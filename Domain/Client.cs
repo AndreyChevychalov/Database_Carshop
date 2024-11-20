@@ -16,15 +16,13 @@ namespace Domain
         /// Инициализирует новый экземпляр класса <see cref="Client"/>.
         /// </summary>
         /// <param name="name">Имя.</param>
-        /// <param name="family_name">Фамилия.</param>
-        /// <param name="surname">Отчество.</param>
-        /// <exception cref="ArgumentNullException">Если имя или фамилия не определены <see langword="null"/>.</exception>
-        public Client(string name, string family_name, string? surname = null)
+        /// <param name="contact_info">Контактная информация.</param>
+        /// <exception cref="ArgumentNullException">Если имя или контактная информация не определены <see langword="null"/>.</exception>
+        public Client(string name, string contact_info)
         {
             this.Id = Guid.NewGuid();
             this.Name = name?.Trim() ?? throw new ArgumentNullException(nameof(name));
-            this.Family_name = family_name?.Trim() ?? throw new ArgumentNullException(nameof(family_name));
-            this.Surname = surname.IsNullOrEmpty() ? null : surname;
+            this.Contact_info = contact_info?.Trim() ?? throw new ArgumentNullException(nameof(contact_info));
         }
 
         /// <summary>
@@ -38,17 +36,12 @@ namespace Domain
         public string Name { get; init; }
 
         /// <summary>
-        /// Фамилия.
+        /// Контактная информация.
         /// </summary>
-        public string Family_name { get; init; }
+        public string Contact_info { get; init; }
 
         /// <summary>
-        /// Отчество.
-        /// </summary>
-        public string? Surname { get; init; }
-
-        /// <summary>
-        /// Рукописи.
+        /// Автомобили.
         /// </summary>
         public ISet<Car> Cars { get; set; } = new HashSet<Car>();
 
@@ -56,7 +49,7 @@ namespace Domain
         /// Добавление автомобиля.
         /// </summary>
         /// <param name="car">Автомобиль.</param>
-        /// <returns><see langword="true"/> если книга была добавлена.</returns>
+        /// <returns><see langword="true"/> если автомобиль был добавлен.</returns>
         public bool Add_car(Car car)
         {
             if (car is null)
@@ -81,8 +74,7 @@ namespace Domain
             }
 
             return this.Name!.Equals(other.Name!)
-                && this.Family_name!.Equals(other.Family_name!)
-                && (this.Surname is null || other.Surname is null || this.Surname!.Equals(other.Surname!));
+                && this.Contact_info!.Equals(other.Contact_info!);
         }
 
         /// <inheritdoc/>
@@ -92,11 +84,7 @@ namespace Domain
         public override int GetHashCode() => this.Id.GetHashCode();
 
         /// <inheritdoc/>
-        public override string ToString()
-        {
-            return this.Surname is not null
-                ? $"{this.Name} {this.Surname} {this.Family_name}"
-                : $"{this.Name} {this.Family_name}";
-        }
+        public override string ToString() =>
+            $"{this.Name} {string.Join(",", this.Contact_info)}";
     }
 }
