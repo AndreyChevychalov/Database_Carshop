@@ -1,10 +1,10 @@
 ﻿// <copyright file="CarTests.cs" company="Чевычалов А.В.">
 // Copyright (c) Чевычалов А.В.. All rights reserved.
 // </copyright>
-namespace TestsDomain
+namespace TestsCarshop
 {
     using System;
-    using Domain;
+    using Carshop;
     using NUnit.Framework;
 
     [TestFixture]

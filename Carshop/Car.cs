@@ -2,7 +2,7 @@
 // Copyright (c) Чевычалов А.В.. All rights reserved.
 // </copyright>
 
-namespace Domain
+namespace Carshop
 {
     using System;
     using Staff.Extensions;
@@ -17,16 +17,16 @@ namespace Domain
         /// </summary>
         /// <param name="mark"> Марка.</param>
         /// <param name="manufactured"> Дата изготовления. </param>
-        /// <param name="Clients">Клиенты.</param>
+        /// <param name="Client">Клиенты.</param>
         /// <exception cref="ArgumentNullException"> Если Марка <see langword="null"/>.</exception>
-        public Car(string mark, DateOnly manufactured, ISet<Client>? Clients = null)
+        public Car(string mark, DateOnly manufactured, ISet<Client>? Client = null)
         {
-            this.Id = Guid.NewGuid();
+            this.Id = Guid.Empty;
             this.Mark = mark.TrimOrNull() ?? throw new ArgumentNullException(nameof(mark));
             this.Manufactured = manufactured;
-            if (Clients != null)
+            if (Client != null)
             {
-                foreach (var client in Clients)
+                foreach (var client in Client)
                 {
                     this.Clients.Add(client);
                     client.Add_car(this);

@@ -2,10 +2,10 @@
 // Copyright (c) Чевычалов А.В.. All rights reserved.
 // </copyright>
 
-namespace TestsDomain
+namespace TestsCarshop
 {
     using System;
-    using Domain;
+    using Carshop;
     using NUnit.Framework;
 
     /// <summary>
@@ -31,7 +31,7 @@ namespace TestsDomain
         {
             // Arrange
             var worker = new Worker("Иванов И.И.", "Механик");
-            var expected = "Иванов И.И. , Механик";
+            var expected = "Иванов И.И. Механик";
 
             // Act
             var actual = worker.ToString();

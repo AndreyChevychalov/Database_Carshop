@@ -2,7 +2,7 @@
 // Copyright (c) Чевычалов А.В.. All rights reserved.
 // </copyright>
 
-namespace Domain
+namespace Carshop
 {
     /// <summary>
     /// Работники.
@@ -17,7 +17,7 @@ namespace Domain
         /// <exception cref="ArgumentNullException">Если название <see langword="null"/>. </exception>
         public Worker(string name, string job)
         {
-            this.Id = Guid.NewGuid();
+            this.Id = Guid.Empty;
             this.Name = name?.Trim() ?? throw new ArgumentNullException(nameof(name));
             this.Job = job?.Trim() ?? throw new ArgumentNullException(nameof(job));
         }
@@ -64,7 +64,7 @@ namespace Domain
         public override int GetHashCode() => this.Id.GetHashCode();
 
         /// <inheritdoc/>
-        public override string ToString() => 
+        public override string ToString() =>
             $"{this.Name} {string.Join(",", this.Job)}";
     }
 }

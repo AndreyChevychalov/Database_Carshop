@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using System;
 
-namespace Domain
+namespace Carshop
 {
     public sealed class Client2 : Person
     {
@@ -23,7 +23,7 @@ namespace Domain
 
         public void AddCar(Car car)
         {
-            if (car == null)
+            if (car is null)
             {
                 throw new ArgumentNullException(nameof(car));
             }

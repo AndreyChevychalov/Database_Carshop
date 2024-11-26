@@ -2,7 +2,7 @@
 // Copyright (c) Чевычалов А.В.. All rights reserved.
 // </copyright>
 
-namespace Domain
+namespace Carshop
 {
     using System;
     using Staff.Extensions;
